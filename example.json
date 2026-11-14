@@ -1,0 +1,36 @@
+{
+  "format": "tabito-course-timetable/v1",
+  "title": "国语冲刺课程",
+  "subtitle": "面向2027年1月共通考试",
+  "term": "2026冬学期",
+  "subject": "国语",
+  "teacher": "张三",
+  "mode": "offline",
+  "room": "",
+  "description": "11月20日起为实战课程。原1月1日课程调至1月5日（周二）。",
+  "expected": { "sessionCount": 18, "totalHours": 54, "firstDate": "2026-08-28", "lastDate": "2027-01-08" },
+  "sessions": [
+    { "number": 1, "date": "2026-08-28", "weekday": "周五", "start": "14:00", "end": "17:00", "topic": "基础读解方法：组合意图，接续词" },
+    { "number": 2, "date": "2026-08-30", "weekday": "周日", "start": "14:00", "end": "17:00", "topic": "基础读解方法：读题技巧" },
+    { "number": 3, "date": "2026-09-04", "weekday": "周五", "start": "14:00", "end": "17:00", "topic": "基础现代文练习0" },
+    { "number": 4, "date": "2026-09-11", "weekday": "周五", "start": "14:00", "end": "17:00", "topic": "基础现代文练习1" },
+    { "number": 5, "date": "2026-09-18", "weekday": "周五", "start": "14:00", "end": "17:00", "topic": "基础现代文练习2" },
+    { "number": 6, "date": "2026-10-09", "weekday": "周五", "start": "14:00", "end": "17:00", "topic": "基础现代文练习3" },
+    { "number": 7, "date": "2026-10-16", "weekday": "周五", "start": "14:00", "end": "17:00", "topic": "基础现代文练习4" },
+    { "number": 8, "date": "2026-10-23", "weekday": "周五", "start": "14:00", "end": "17:00", "topic": "小说读解技巧，基础现代文练习5、6" },
+    { "number": 10, "date": "2026-11-06", "weekday": "周五", "start": "14:00", "end": "17:00", "topic": "评论，小说综合演练" },
+    { "number": 11, "date": "2026-11-13", "weekday": "周五", "start": "14:00", "end": "17:00", "topic": "评论，小说综合演练" },
+    { "number": 12, "date": "2026-11-20", "weekday": "周五", "start": "14:00", "end": "17:00", "topic": "刷题冲刺班｜真题演练与讲评" },
+    { "number": 13, "date": "2026-11-27", "weekday": "周五", "start": "14:00", "end": "17:00", "topic": "刷题冲刺班｜真题演练与讲评" },
+    { "number": 14, "date": "2026-12-04", "weekday": "周五", "start": "14:00", "end": "17:00", "topic": "刷题冲刺班｜真题演练与讲评" },
+    { "number": 15, "date": "2026-12-11", "weekday": "周五", "start": "14:00", "end": "17:00", "topic": "刷题冲刺班｜真题演练与讲评" },
+    { "number": 16, "date": "2026-12-18", "weekday": "周五", "start": "14:00", "end": "17:00", "topic": "刷题冲刺班｜真题演练与讲评" },
+    { "number": 17, "date": "2026-12-25", "weekday": "周五", "start": "14:00", "end": "17:00", "topic": "刷题冲刺班｜真题演练与讲评" },
+    { "number": 18, "date": "2027-01-05", "weekday": "周二", "start": "14:00", "end": "17:00", "topic": "刷题冲刺班｜真题演练与讲评" },
+    { "number": 19, "date": "2027-01-08", "weekday": "周五", "start": "14:00", "end": "17:00", "topic": "刷题冲刺班｜真题演练与讲评" }
+  ],
+  "breaks": [
+    { "from": "2026-09-20", "to": "2026-10-08", "label": "停课" },
+    { "from": "2026-10-30", "to": "2026-10-30", "label": "休讲" }
+  ]
+}

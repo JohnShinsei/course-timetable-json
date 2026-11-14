@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tabito-course-timetable/v1",
+  "title": "旅人教育课程表（导入平台用）",
+  "description": "一张课程表抄成的 JSON。交给 POST /api/staff/teaching-courses/import 或在「新建课程」里选「导入课表 JSON」。核对规则见 server/teaching-course-import.js。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "title", "subject", "teacher", "mode", "sessions"],
+  "properties": {
+    "format": { "const": "tabito-course-timetable/v1" },
+    "title": { "type": "string", "minLength": 1, "maxLength": 120, "description": "课表大标题，例如 国语冲刺课程。不要带学期。" },
+    "subtitle": { "type": "string", "maxLength": 200, "description": "标题下面那一行，例如 面向2027年1月共通考试。会放在课程说明的第一行。" },
+    "term": { "type": "string", "maxLength": 60, "description": "学期，例如 2026冬学期。平台上的课程名是「title｜term」。" },
+    "subject": { "type": "string", "minLength": 1, "maxLength": 40, "description": "科目，例如 国语、数学ⅠA、物理。平台会对到已登记的科目写法。" },
+    "teacher": { "type": "string", "minLength": 1, "maxLength": 100, "description": "授课教师姓名，照课表原样。" },
+    "mode": { "enum": ["offline", "online", "hybrid"], "description": "授课形式：线下 offline，线上 online，线上和线下 hybrid。" },
+    "room": { "type": "string", "maxLength": 200, "description": "教室或地点；课表没写就省略或留空。" },
+    "description": { "type": "string", "maxLength": 3700, "description": "「课程说明」一栏的原文。" },
+    "expected": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "课表上自己写的总数，用来对账：对不上就拒绝导入。",
+      "properties": {
+        "sessionCount": { "type": "integer", "minimum": 1, "description": "「已定18回」→ 18" },
+        "totalHours": { "type": "number", "exclusiveMinimum": 0, "description": "「54小时」→ 54" },
+        "firstDate": { "type": "string", "format": "date" },
+        "lastDate": { "type": "string", "format": "date" }
+      }
+    },
+    "sessions": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 200,
+      "description": "有课的每一行，一行一项。停课、休讲的行不写在这里。",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["date", "weekday", "start", "end"],
+        "properties": {
+          "number": { "type": "integer", "minimum": 1, "maximum": 999, "description": "课表上印的课次，「第10回」→ 10。照抄，跳号也不要改。" },
+          "date": { "type": "string", "format": "date", "description": "带年份的日期，日本时间，例如 2026-08-28。" },
+          "weekday": { "enum": ["周一", "周二", "周三", "周四", "周五", "周六", "周日"], "description": "课表上印的星期，照抄；平台用它核对日期和年份。" },
+          "start": { "type": "string", "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$" },
+          "end": { "type": "string", "pattern": "^(([01]\\d|2[0-3]):[0-5]\\d|24:00)$" },
+          "topic": { "type": "string", "maxLength": 500, "description": "授课内容，照课表原文。" }
+        }
+      }
+    },
+    "breaks": {
+      "type": "array",
+      "maxItems": 100,
+      "description": "停课、休讲的日期段。只用来核对（这些日期里不能有课），不会建成课次。",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["from", "to"],
+        "properties": {
+          "from": { "type": "string", "format": "date" },
+          "to": { "type": "string", "format": "date" },
+          "label": { "type": "string", "maxLength": 40, "description": "停课 / 休讲" }
+        }
+      }
+    }
+  }
+}
